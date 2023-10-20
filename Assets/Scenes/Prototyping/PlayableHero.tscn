@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7e33545msjdi"]
+
+[ext_resource type="Script" path="res://Assets/Code/Prototyping/Control/CubeController.cs" id="1_0pdoc"]
+[ext_resource type="Texture2D" uid="uid://pg00k1xahuxm" path="res://Assets/Textures/Prototyping/Light/texture_07.png" id="1_qv7sq"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vu6mv"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kh76y"]
+albedo_texture = ExtResource("1_qv7sq")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3uxc7"]
+
+[node name="PlayableHero" type="CharacterBody3D" node_paths=PackedStringArray("_model")]
+script = ExtResource("1_0pdoc")
+_model = NodePath("BodyPivot/BodyMesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_vu6mv")
+
+[node name="BodyPivot" type="Node3D" parent="."]
+
+[node name="BodyMesh" type="MeshInstance3D" parent="BodyPivot"]
+material_override = SubResource("StandardMaterial3D_kh76y")
+mesh = SubResource("BoxMesh_3uxc7")
+skeleton = NodePath("../..")
