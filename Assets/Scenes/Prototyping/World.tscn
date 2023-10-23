@@ -60,6 +60,7 @@ script = ExtResource("7_756dh")
 _camera = NodePath("..")
 _nodeToFollow = NodePath("../../PlayableHero")
 _offset = Vector3(0, 0.5, 0)
+_cameraSensivity = 0.001
 
 [node name="FollowBehaviour" type="Node" parent="MainCamera"]
 
