@@ -27,6 +27,9 @@ public partial class CubeController : CharacterBody3D
         _moveDirection.Z = _input.LeftCross.Y;
         _moveDirection = _moveDirection.Rotated(Vector3.Up, _camera.Rotation.Y).Normalized();
 
+        _rotation.Y = _camera.Rotation.Y;
+        Rotation = _rotation;
+
         // get movement velocity
         _targetVelocity = _moveDirection * _speed;
 
