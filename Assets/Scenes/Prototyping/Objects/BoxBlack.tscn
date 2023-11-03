@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjsld0f4asf3r"]
+
+[ext_resource type="Texture2D" uid="uid://bn5j0083c84a4" path="res://Assets/Textures/Prototyping/Dark/texture_08.png" id="1_cl7yo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3r2yj"]
+albedo_texture = ExtResource("1_cl7yo")
+
+[node name="BoxBlack" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_3r2yj")
+size = Vector3(0.5, 0.5, 0.5)

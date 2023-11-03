@@ -14,8 +14,6 @@ public partial class CubeController : CharacterBody3D
     [Export]
     private Node3D _camera;
     [Export]
-    private Node3D _model;
-    [Export]
     private InputHandler _input;
 
     private Vector3 _moveDirection = Vector3.Zero;

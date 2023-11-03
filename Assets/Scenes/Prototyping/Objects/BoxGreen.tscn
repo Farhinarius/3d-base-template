@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj6hstwqiustu"]
+
+[ext_resource type="Texture2D" uid="uid://cyrmec202f201" path="res://Assets/Textures/Prototyping/Green/texture_09.png" id="1_mdhbt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7svy8"]
+albedo_texture = ExtResource("1_mdhbt")
+uv1_triplanar = true
+
+[node name="BoxGreen" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_7svy8")
+use_collision = true
+size = Vector3(3, 3, 3)

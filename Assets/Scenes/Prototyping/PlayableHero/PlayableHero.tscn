@@ -12,9 +12,8 @@ uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_3uxc7"]
 
-[node name="PlayableHero" type="CharacterBody3D" node_paths=PackedStringArray("_model")]
+[node name="PlayableHero" type="CharacterBody3D"]
 script = ExtResource("1_0pdoc")
-_model = NodePath("BodyPivot/BodyMesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_vu6mv")

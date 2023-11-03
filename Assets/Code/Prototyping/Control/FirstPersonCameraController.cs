@@ -1,30 +1,14 @@
-using Code.Prototyping.InputTranslation;
 using Godot;
-using System;
 
 public partial class FirstPersonCameraController : Node
 {
     [Export]
     private Node3D _camera;
     [Export]
-    private Node3D _nodeToFollow;
-    [Export]
-    private Vector3 _offset = Vector3.Zero;
-    [Export]
-    private float _cameraSensivity = 0.005f;
+    private float _cameraSensivity = 0.002f;       // default is 0.005f
     
     public Vector2 _mouseOffset = Vector2.Zero;
     private Vector3 _cameraRotation;
-
-    public override void _Process(double delta)
-    {
-        FollowNode();
-    }
-
-    private void FollowNode()
-    {
-        _camera.Position = _nodeToFollow.Position + _offset;
-    }
 
     public override void _UnhandledInput(InputEvent inputEvent)
     {
@@ -43,6 +27,5 @@ public partial class FirstPersonCameraController : Node
         _cameraRotation.X = Mathf.Clamp(_cameraRotation.X, -Mathf.Pi / 2, Mathf.Pi / 2);
         _camera.Rotation = _cameraRotation;
     }
-
 
 }

@@ -1,13 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://b17422jxkssqx"]
+[gd_scene load_steps=20 format=3 uid="uid://b17422jxkssqx"]
 
 [ext_resource type="Texture2D" uid="uid://bvmysvirwfk78" path="res://Assets/Textures/Prototyping/Dark/texture_05.png" id="1_12ldw"]
-[ext_resource type="PackedScene" uid="uid://b7e33545msjdi" path="res://Assets/Scenes/Prototyping/PlayableHero.tscn" id="1_64877"]
+[ext_resource type="PackedScene" uid="uid://b7e33545msjdi" path="res://Assets/Scenes/Prototyping/PlayableHero/PlayableHero.tscn" id="1_64877"]
+[ext_resource type="Script" path="res://Assets/Code/Prototyping/Control/FollowNode.cs" id="2_2042q"]
 [ext_resource type="Texture2D" uid="uid://y7dn7qu2tkuy" path="res://Assets/Textures/Prototyping/Orange/texture_09.png" id="2_ewurl"]
 [ext_resource type="Texture2D" uid="uid://chpnow7k010cj" path="res://Assets/Textures/Prototyping/Red/texture_09.png" id="3_ubsel"]
 [ext_resource type="Texture2D" uid="uid://dw5x64y0bvp4" path="res://Assets/Textures/Prototyping/Purple/texture_09.png" id="4_680wx"]
 [ext_resource type="Texture2D" uid="uid://cyrmec202f201" path="res://Assets/Textures/Prototyping/Green/texture_09.png" id="5_kbdmj"]
 [ext_resource type="Script" path="res://Assets/Code/Prototyping/InputTranslation/InputHandler.cs" id="6_8gudk"]
 [ext_resource type="Script" path="res://Assets/Code/Prototyping/Control/FirstPersonCameraController.cs" id="7_756dh"]
+[ext_resource type="Texture2D" uid="uid://bn5j0083c84a4" path="res://Assets/Textures/Prototyping/Dark/texture_08.png" id="9_0amps"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_phwqi"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -22,7 +24,6 @@ sky = SubResource("Sky_cqpyn")
 tonemap_mode = 2
 sdfgi_enabled = true
 glow_enabled = true
-fog_enabled = true
 fog_density = 0.001
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cn3l"]
@@ -43,6 +44,9 @@ uv1_triplanar = true
 albedo_texture = ExtResource("5_kbdmj")
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3r2yj"]
+albedo_texture = ExtResource("9_0amps")
+
 [node name="World" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -53,19 +57,20 @@ shadow_enabled = true
 environment = SubResource("Environment_tcy66")
 
 [node name="MainCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="FirstPersonCameraController" type="Node" parent="MainCamera" node_paths=PackedStringArray("_camera", "_nodeToFollow")]
+[node name="FirstPersonCameraController" type="Node" parent="MainCamera" node_paths=PackedStringArray("_camera")]
 script = ExtResource("7_756dh")
 _camera = NodePath("..")
-_nodeToFollow = NodePath("../../PlayableHero")
-_offset = Vector3(0, 0.5, 0)
-_cameraSensivity = 0.001
 
-[node name="FollowBehaviour" type="Node" parent="MainCamera"]
+[node name="FollowBehaviour" type="Node" parent="MainCamera" node_paths=PackedStringArray("_nodeToFollow", "_nodeFollower")]
+script = ExtResource("2_2042q")
+_nodeToFollow = NodePath("../../PlayableHero")
+_nodeFollower = NodePath("..")
+_offset = Vector3(0, 0.5, 0)
 
 [node name="PlayableHero" parent="." node_paths=PackedStringArray("_camera", "_input") instance=ExtResource("1_64877")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 _speed = 5.0
 _jumpStrength = 10.0
 _fallAcceleration = 70.0
@@ -77,29 +82,35 @@ _input = NodePath("../InputHandler")
 [node name="Ground" type="CSGBox3D" parent="Map"]
 material_override = SubResource("StandardMaterial3D_5cn3l")
 use_collision = true
-size = Vector3(1000, 1, 1000)
+size = Vector3(1000, 0, 1000)
 
-[node name="box1" type="CSGBox3D" parent="Map"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 4, 1, 0)
+[node name="BoxOrange" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 4, 0.5, 0)
 material_override = SubResource("StandardMaterial3D_c7ofj")
 use_collision = true
 
-[node name="box2" type="CSGBox3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.43626, 1, -5.5)
+[node name="BoxRed" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.43626, 0.5, -5.5)
 material_override = SubResource("StandardMaterial3D_2ja2d")
 use_collision = true
 
-[node name="box3" type="CSGBox3D" parent="Map"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.374272, 1.5, 7.62744)
+[node name="BoxPurple" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.374272, 1, 7.62744)
 material_override = SubResource("StandardMaterial3D_800am")
 use_collision = true
 size = Vector3(2, 2, 2)
 
-[node name="box4" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, -0.422618, -9.07427, 2, 0.0274377)
+[node name="BoxGreen" type="CSGBox3D" parent="Map"]
+transform = Transform3D(-0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, -0.422618, -9.07427, 1.5, 0.0274377)
 material_override = SubResource("StandardMaterial3D_7svy8")
 use_collision = true
 size = Vector3(3, 3, 3)
+
+[node name="BoxBlack" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.928719, 0, 0.370784, 0, 1, 0, -0.370784, 0, 0.928719, 0, 0.25, -5.926)
+material_override = SubResource("StandardMaterial3D_3r2yj")
+use_collision = true
+size = Vector3(0.5, 0.5, 0.5)
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("6_8gudk")

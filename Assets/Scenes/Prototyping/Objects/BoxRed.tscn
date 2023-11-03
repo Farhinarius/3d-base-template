@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4v7lpvkgavaj"]
+
+[ext_resource type="Texture2D" uid="uid://chpnow7k010cj" path="res://Assets/Textures/Prototyping/Red/texture_09.png" id="1_bnj1r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ja2d"]
+albedo_texture = ExtResource("1_bnj1r")
+
+[node name="BoxRed" type="CSGBox3D"]
+material_override = SubResource("StandardMaterial3D_2ja2d")
+use_collision = true

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcjycrti828yc"]
+
+[ext_resource type="Texture2D" uid="uid://dw5x64y0bvp4" path="res://Assets/Textures/Prototyping/Purple/texture_09.png" id="1_ud5cn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_800am"]
+albedo_texture = ExtResource("1_ud5cn")
+uv1_triplanar = true
+
+[node name="BoxPurple" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_800am")
+use_collision = true
+size = Vector3(2, 2, 2)
