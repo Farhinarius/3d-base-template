@@ -3,9 +3,9 @@ using Godot;
 public partial class FollowNode : Node
 {
     [Export]
-    private Node3D _nodeToFollow;
-    [Export]
     private Node3D _nodeFollower;
+    [Export]
+    private Node3D _nodeToFollow;
     [Export]
     private Vector3 _offset;
 
