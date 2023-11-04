@@ -9,5 +9,6 @@ public static class InputMapping
     public static string Confirm => "Confirm";
     public static string Cancel => "Cancel";
     public static string Retry => "Retry";
+    public static string Focus => "Focus";
 }
 

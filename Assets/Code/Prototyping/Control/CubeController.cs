@@ -12,20 +12,31 @@ public partial class CubeController : CharacterBody3D
     [Export]
     private float _fallAcceleration = 50f;
     [Export]
-    public Node3D _camera;
-    [Export]
-    private InputHandler _input;
+    public Node3D RotationLeader;
 
+    private Vector2 _leftCross = Vector2.Zero;
+    private bool _confirmPressed = false; 
+    
     private Vector3 _moveDirection = Vector3.Zero;
     private Vector3 _targetVelocity = Vector3.Zero;
     private Vector3 _rotation = Vector3.Zero;
 
+    public override void _Process(double delta)
+    {
+        _leftCross = Input.GetVector(InputMapping.LeftCrossHorizontalNegative,
+            InputMapping.LeftCrossHorizontalPositive,
+            InputMapping.LeftCrossVerticalNegative,
+            InputMapping.LeftCrossVerticalPositive);
+
+        _confirmPressed = Input.IsActionJustPressed(InputMapping.Confirm);
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         // get move direction
-        _moveDirection.X = _input.LeftCross.X;
-        _moveDirection.Z = _input.LeftCross.Y;
-        _moveDirection = _moveDirection.Rotated(Vector3.Up, _camera.Rotation.Y).Normalized();
+        _moveDirection.X = _leftCross.X;
+        _moveDirection.Z = _leftCross.Y;
+        _moveDirection = _moveDirection.Rotated(Vector3.Up, RotationLeader.Rotation.Y).Normalized();
 
         // get movement velocity
         _targetVelocity = _moveDirection * _speed;
@@ -37,7 +48,7 @@ public partial class CubeController : CharacterBody3D
         }
         
         // get jump velocity
-        if (IsOnFloor() && _input.ConfirmPressed)
+        if (IsOnFloor() && _confirmPressed)
         {
             _targetVelocity.Y = _jumpStrength;
         }

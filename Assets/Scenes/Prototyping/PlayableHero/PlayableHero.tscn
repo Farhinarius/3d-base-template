@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7e33545msjdi"]
+[gd_scene load_steps=7 format=3 uid="uid://b7e33545msjdi"]
 
 [ext_resource type="Script" path="res://Assets/Code/Prototyping/Control/CubeController.cs" id="1_0pdoc"]
 [ext_resource type="Texture2D" uid="uid://pg00k1xahuxm" path="res://Assets/Textures/Prototyping/Light/texture_07.png" id="1_qv7sq"]
+[ext_resource type="Script" path="res://Assets/Code/Prototyping/Control/RotateWithMouse.cs" id="3_p8ocs"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vu6mv"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
@@ -12,8 +13,9 @@ uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_3uxc7"]
 
-[node name="PlayableHero" type="CharacterBody3D"]
+[node name="PlayableHero" type="CharacterBody3D" node_paths=PackedStringArray("RotationLeader")]
 script = ExtResource("1_0pdoc")
+RotationLeader = NodePath("FirstPersonCamera")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_vu6mv")
@@ -24,3 +26,8 @@ shape = SubResource("ConvexPolygonShape3D_vu6mv")
 material_override = SubResource("StandardMaterial3D_kh76y")
 mesh = SubResource("BoxMesh_3uxc7")
 skeleton = NodePath("../..")
+
+[node name="FirstPersonCamera" type="Camera3D" parent="." node_paths=PackedStringArray("_cubeController")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("3_p8ocs")
+_cubeController = NodePath("..")
