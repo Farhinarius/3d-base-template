@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7e33545msjdi"]
+[gd_scene load_steps=8 format=3 uid="uid://b7e33545msjdi"]
 
 [ext_resource type="Script" path="res://Assets/Code/Prototyping/Control/CubeController.cs" id="1_0pdoc"]
 [ext_resource type="Texture2D" uid="uid://pg00k1xahuxm" path="res://Assets/Textures/Prototyping/Light/texture_07.png" id="1_qv7sq"]
 [ext_resource type="Script" path="res://Assets/Code/Prototyping/Control/RotateWithMouse.cs" id="3_p8ocs"]
+[ext_resource type="Script" path="res://Assets/Code/Prototyping/Control/CameraSelector.cs" id="4_eef8s"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vu6mv"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
@@ -14,8 +15,11 @@ uv1_triplanar = true
 [sub_resource type="BoxMesh" id="BoxMesh_3uxc7"]
 
 [node name="PlayableHero" type="CharacterBody3D" node_paths=PackedStringArray("RotationLeader")]
+transform = Transform3D(0.999942, 0.00890635, -0.00610327, -0.00893311, 0.999951, -0.00437162, 0.00606404, 0.00442588, 0.999972, 0, 0, 0)
 script = ExtResource("1_0pdoc")
-RotationLeader = NodePath("FirstPersonCamera")
+_jumpStrength = 50.0
+_fallAcceleration = 25.0
+RotationLeader = NodePath(".")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_vu6mv")
@@ -27,7 +31,18 @@ material_override = SubResource("StandardMaterial3D_kh76y")
 mesh = SubResource("BoxMesh_3uxc7")
 skeleton = NodePath("../..")
 
-[node name="FirstPersonCamera" type="Camera3D" parent="." node_paths=PackedStringArray("_cubeController")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="CameraPivot" type="Node3D" parent="." node_paths=PackedStringArray("_cubeController")]
 script = ExtResource("3_p8ocs")
 _cubeController = NodePath("..")
+
+[node name="Camera" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
+
+[node name="CameraSelector" type="Node" parent="." node_paths=PackedStringArray("_camera", "_pivot", "_cubeController")]
+script = ExtResource("4_eef8s")
+_camera = NodePath("../CameraPivot/Camera")
+_pivot = NodePath("../CameraPivot")
+_cubeController = NodePath("..")
+_firstPersonCamPosition = Vector3(0, 0.5, -0.5)
+_thirdPersonCamPosition = Vector3(0, 2.29957, 2.62184)
+_thirdPersonCamRotation = Vector3(-0.295764, 0, 0)

@@ -6,11 +6,11 @@ public partial class RotateWithMouse : Node3D
 {
     [Export]
     private CubeController _cubeController;
+
     [Export]
     private float _rotationSensivity = 0.002f;       // default is 0.005f
     private Vector3 _cameraRotation;
     public Vector2 _mouseOffset = Vector2.Zero;
-    
 
     public override void _Ready()
     {
