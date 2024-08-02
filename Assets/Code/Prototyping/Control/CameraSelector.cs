@@ -7,11 +7,7 @@ using System.Diagnostics;
 public partial class CameraSelector : Node
 {
 	[Export]
-	private Node3D _firstPersonCamera;
-	[Export]
-	private Node3D _thirdPersonCameraSpring;
-	[Export]
-	private Node3D _thirdPersonCamera;
+	private Node3D _camera;
 	[Export]
 	private CubeController _cubeController;
 
@@ -26,37 +22,18 @@ public partial class CameraSelector : Node
     public override void _Ready()
     {
 		_cameraSelected = CameraSelection.FirstPerson;
-        _thirdPersonCamera.Set(false);
-        _thirdPersonCameraSpring.Set(false);
-        _firstPersonCamera.Set();
-		_cubeController.RotationLeader = _firstPersonCamera;
+        _camera.Set();
+		_cubeController.RotationLeader = _camera;
     }
 
     public override void _Process(double delta)
     {
-		if (!Input.IsActionJustPressed(InputMapping.Focus)) return;
-
-		if (_cameraSelected == CameraSelection.FirstPerson)
+		if (Input.IsActionJustPressed(InputMapping.Focus))
 		{
-			Debug.WriteLine("Switch from FPC to TPC");
-			// enable third person camera
-			_cameraSelected = CameraSelection.ThirdPerson;
-			_firstPersonCamera.Set(false);
-			_thirdPersonCameraSpring.Set();
-			_thirdPersonCamera.Set();
-			_cubeController.RotationLeader = _thirdPersonCameraSpring;
 
-        }
-		else
-		{
-            Debug.WriteLine("Switch from TPC to FPC");
-            // enable first person camera
-            _cameraSelected = CameraSelection.FirstPerson;
-			_thirdPersonCamera.Set(false);
-			_thirdPersonCameraSpring.Set(false);
-			_firstPersonCamera.Set();
-			_cubeController.RotationLeader = _firstPersonCamera;
 		}
+
+
 
     }
 
