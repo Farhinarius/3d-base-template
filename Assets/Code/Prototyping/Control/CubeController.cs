@@ -41,16 +41,16 @@ public partial class CubeController : CharacterBody3D
         // get movement velocity
         _targetVelocity = _moveDirection * _speed;
 
-        // get gravity velocity
-        if (!IsOnFloor())
-        {
-            _targetVelocity.Y -= _fallAcceleration * (float)delta;
-        }
-        
         // get jump velocity
         if (IsOnFloor() && _confirmPressed)
         {
             _targetVelocity.Y = _jumpStrength;
+        }
+
+        // get gravity velocity
+        if (!IsOnFloor())
+        {
+            _targetVelocity.Y -= _fallAcceleration * (float)delta;
         }
 
         // apply target velocity

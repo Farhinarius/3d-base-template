@@ -38,11 +38,9 @@ _cubeController = NodePath("..")
 [node name="Camera" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
 
-[node name="CameraSelector" type="Node" parent="." node_paths=PackedStringArray("_camera", "_pivot", "_cubeController")]
+[node name="CameraSelector" type="Node" parent="." node_paths=PackedStringArray("_camera")]
 script = ExtResource("4_eef8s")
 _camera = NodePath("../CameraPivot/Camera")
-_pivot = NodePath("../CameraPivot")
-_cubeController = NodePath("..")
 _firstPersonCamPosition = Vector3(0, 0.5, -0.5)
 _thirdPersonCamPosition = Vector3(0, 2.29957, 2.62184)
 _thirdPersonCamRotation = Vector3(-0.295764, 0, 0)

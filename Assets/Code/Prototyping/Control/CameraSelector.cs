@@ -7,10 +7,6 @@ public partial class CameraSelector : Node
 	[Export]
 	private Node3D _camera;
     [Export]
-    private Node3D _pivot;
-    [Export]
-	private CubeController _cubeController;
-    [Export]
 	private Vector3 _firstPersonCamPosition;
     [Export]
     private Vector3 _firstPersonCamRotation;

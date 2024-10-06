@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcx0ox007tqej"]
+[gd_scene load_steps=18 format=3 uid="uid://dcx0ox007tqej"]
 
 [ext_resource type="Texture2D" uid="uid://bvmysvirwfk78" path="res://Assets/Textures/Prototyping/Dark/texture_05.png" id="1_12ldw"]
 [ext_resource type="PackedScene" uid="uid://b7e33545msjdi" path="res://Assets/Scenes/Prototyping/PlayableHero/PlayableHero.tscn" id="1_64877"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://chpnow7k010cj" path="res://Assets/Textures/Prototyping/Red/texture_09.png" id="3_ubsel"]
 [ext_resource type="Texture2D" uid="uid://dw5x64y0bvp4" path="res://Assets/Textures/Prototyping/Purple/texture_09.png" id="4_680wx"]
 [ext_resource type="Texture2D" uid="uid://cyrmec202f201" path="res://Assets/Textures/Prototyping/Green/texture_09.png" id="5_kbdmj"]
+[ext_resource type="PackedScene" uid="uid://b4v7lpvkgavaj" path="res://Assets/Scenes/Prototyping/Objects/BoxRed.tscn" id="8_034fn"]
 [ext_resource type="Texture2D" uid="uid://bn5j0083c84a4" path="res://Assets/Textures/Prototyping/Dark/texture_08.png" id="9_0amps"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_phwqi"]
@@ -54,10 +55,13 @@ shadow_enabled = true
 environment = SubResource("Environment_tcy66")
 
 [node name="PlayableHero" parent="." instance=ExtResource("1_64877")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00926018, 0.485766, 0.0134044)
 _speed = 5.0
 _jumpStrength = 10.0
 _fallAcceleration = 70.0
+
+[node name="BoxRed2" parent="." instance=ExtResource("8_034fn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00587, 0.5, 3.99235)
 
 [node name="Map" type="Node3D" parent="."]
 
