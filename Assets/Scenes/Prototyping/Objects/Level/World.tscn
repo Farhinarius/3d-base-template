@@ -56,9 +56,6 @@ environment = SubResource("Environment_tcy66")
 
 [node name="PlayableHero" parent="." instance=ExtResource("1_64877")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00926018, 0.485766, 0.0134044)
-_speed = 5.0
-_jumpStrength = 10.0
-_fallAcceleration = 70.0
 
 [node name="BoxRed2" parent="." instance=ExtResource("8_034fn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00587, 0.5, 3.99235)

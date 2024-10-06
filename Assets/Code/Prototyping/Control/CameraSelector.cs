@@ -1,6 +1,5 @@
 using Godot;
 using Code.Prototyping.InputTranslation;
-using dbasetemplate.Assets.Code.Prototyping.Control;
 
 public partial class CameraSelector : Node
 {

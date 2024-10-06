@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cyw3rtvhjwp0e"]
+
+[ext_resource type="Script" path="res://Assets/Code/Prototyping/DataContainers/Structures/CharacterData.cs" id="1_8kpib"]
+
+[resource]
+resource_name = "PlayerData"
+script = ExtResource("1_8kpib")
+Speed = 7.0
+JumpStrength = 25.0
+FallAcceleration = 50.0

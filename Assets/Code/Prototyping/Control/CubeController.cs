@@ -1,4 +1,5 @@
 using Code.Prototyping.InputTranslation;
+using dbasetemplate.Assets.Code.Prototyping.DataContainers.ContainerStructures;
 using Godot;
 
 namespace dbasetemplate.Assets.Code.Prototyping.Control;
@@ -6,11 +7,7 @@ namespace dbasetemplate.Assets.Code.Prototyping.Control;
 public partial class CubeController : CharacterBody3D
 {
     [Export]
-    private float _speed = 7.0f;
-    [Export]
-    private float _jumpStrength = 25f;
-    [Export]
-    private float _fallAcceleration = 50f;
+    private CharacterData _playerData;
     [Export]
     public Node3D RotationLeader;
 
@@ -39,18 +36,18 @@ public partial class CubeController : CharacterBody3D
         _moveDirection = _moveDirection.Rotated(Vector3.Up, RotationLeader.Rotation.Y).Normalized();
 
         // get movement velocity
-        _targetVelocity = _moveDirection * _speed;
+        _targetVelocity = _moveDirection * _playerData.Speed;
 
         // get jump velocity
         if (IsOnFloor() && _confirmPressed)
         {
-            _targetVelocity.Y = _jumpStrength;
+            _targetVelocity.Y = _playerData.JumpStrength;
         }
 
         // get gravity velocity
         if (!IsOnFloor())
         {
-            _targetVelocity.Y -= _fallAcceleration * (float)delta;
+            _targetVelocity.Y -= _playerData.FallAcceleration * (float)delta;
         }
 
         // apply target velocity
