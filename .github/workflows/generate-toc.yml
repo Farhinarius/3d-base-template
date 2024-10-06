@@ -1,0 +1,24 @@
+name: Generate Table of Contents
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  toc:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Generate TOC
+      uses: technote-space/toc-generator@v4
+
+    - name: Commit changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add .
+        git commit -m 'docs: update TOC'
+        git push

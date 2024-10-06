@@ -1,6 +1,17 @@
-[TOC]
-
 ## Godot best architecture approaches
+
+- [Godot best architecture approaches](#godot-best-architecture-approaches)
+  - [1. **Use Object-Oriented Design (OOD) and SOLID Principles**](#1-use-object-oriented-design-ood-and-solid-principles)
+  - [2. **Scene Tree Organization**](#2-scene-tree-organization)
+  - [3. **Component-Based Architecture**](#3-component-based-architecture)
+  - [4. **Signal and Event System**](#4-signal-and-event-system)
+  - [5. **State Machines for Character Control**](#5-state-machines-for-character-control)
+  - [6. **Organizing Resources and Assets**](#6-organizing-resources-and-assets)
+  - [7. **Dependency Injection**](#7-dependency-injection)
+  - [8. **Leverage Godot's Built-in Tools**](#8-leverage-godots-built-in-tools)
+  - [9. **Performance Optimization**](#9-performance-optimization)
+  - [10. **Unit Testing and Debugging**](#10-unit-testing-and-debugging)
+
 
 When organizing a robust and flexible architecture in Godot 4.3 for a 3D project using C#, there are several best practices to ensure the structure is maintainable, scalable, and adaptable. Here's a breakdown of key principles:
 
